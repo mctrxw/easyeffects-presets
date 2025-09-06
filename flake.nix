@@ -19,5 +19,7 @@
         value = builtins.fromJSON (builtins.readFile (./. + "/${fileName}"));
       };
     in
-    builtins.listToAttrs (map createJsonAttr jsonFiles);
+    {
+      effects = builtins.listToAttrs (map createJsonAttr jsonFiles);
+    };
 }
