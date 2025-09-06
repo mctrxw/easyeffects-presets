@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
@@ -19,9 +18,6 @@
         name = lib.removeSuffix ".json" fileName;
         value = builtins.fromJSON (builtins.readFile (./. + "/${fileName}"));
       };
-
-      jsonAttrs = builtins.listToAttrs (map createJsonAttr jsonFiles);
-
     in
-    jsonAttrs;
+    builtins.listToAttrs (map createJsonAttr jsonFiles);
 }
